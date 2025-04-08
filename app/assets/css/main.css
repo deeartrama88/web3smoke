@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+.app-container {
+  display: flex;
+  margin: 0 auto;
+  max-width: 1200px;
+  min-height: 100dvh;
+  flex-direction: column;
+
+  main {
+    flex: 1;
+  }
+}
