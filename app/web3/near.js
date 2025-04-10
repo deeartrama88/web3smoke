@@ -1,16 +1,16 @@
 // near api js
-import { providers, utils } from "near-api-js";
+import * as nearAPI from "near-api-js";
 
 // wallet selector
 import "@near-wallet-selector/modal-ui/styles.css";
 import { setupModal } from "@near-wallet-selector/modal-ui";
 import { setupWalletSelector } from "@near-wallet-selector/core";
-import { setupHereWallet } from "@near-wallet-selector/here-wallet";
+// import { setupHereWallet } from "@near-wallet-selector/here-wallet";
 import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
-import { setupLedger } from "@near-wallet-selector/ledger";
-import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
-import { setupSender } from "@near-wallet-selector/sender";
-import { setupBitteWallet } from "@near-wallet-selector/bitte-wallet";
+// import { setupLedger } from "@near-wallet-selector/ledger";
+// import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
+// import { setupSender } from "@near-wallet-selector/sender";
+// import { setupBitteWallet } from "@near-wallet-selector/bitte-wallet";
 
 // ethereum wallets
 // import { wagmiConfig, web3Modal } from "@/wallets/web3modal";
@@ -44,11 +44,11 @@ export class Wallet {
       network: this.networkId,
       modules: [
         setupMyNearWallet(),
-        setupHereWallet(),
-        setupLedger(),
-        setupMeteorWallet(),
-        setupSender(),
-        setupBitteWallet(),
+        // setupHereWallet(),
+        // setupLedger(),
+        // setupMeteorWallet(),
+        // setupSender(),
+        // setupBitteWallet(),
         // setupEthereumWallets({
         //   wagmiConfig,
         //   web3Modal,
@@ -101,7 +101,7 @@ export class Wallet {
    */
   viewMethod = async ({ contractId, method, args = {} }) => {
     const url = `https://rpc.${this.networkId}.near.org`;
-    const provider = new providers.JsonRpcProvider({ url });
+    const provider = new nearAPI.providers.JsonRpcProvider({ url });
 
     const res = await provider.query({
       request_type: "call_function",
@@ -147,7 +147,7 @@ export class Wallet {
       ],
     });
 
-    return providers.getTransactionLastResult(outcome);
+    return nearAPI.providers.getTransactionLastResult(outcome);
   };
 
   /**
@@ -158,11 +158,13 @@ export class Wallet {
   getTransactionResult = async (txhash) => {
     const walletSelector = await this.selector;
     const { network } = walletSelector.options;
-    const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
+    const provider = new nearAPI.providers.JsonRpcProvider({
+      url: network.nodeUrl,
+    });
 
     // Retrieve transaction result from the network
     const transaction = await provider.txStatus(txhash, "unnused");
-    return providers.getTransactionLastResult(transaction);
+    return nearAPI.providers.getTransactionLastResult(transaction);
   };
 
   /**
@@ -174,7 +176,9 @@ export class Wallet {
   getBalance = async (accountId) => {
     const walletSelector = await this.selector;
     const { network } = walletSelector.options;
-    const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
+    const provider = new nearAPI.providers.JsonRpcProvider({
+      url: network.nodeUrl,
+    });
 
     // Retrieve account state from the network
     const account = await provider.query({
@@ -191,7 +195,9 @@ export class Wallet {
   getAccountData = async (accountId) => {
     const walletSelector = await this.selector;
     const { network } = walletSelector.options;
-    const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
+    const provider = new nearAPI.providers.JsonRpcProvider({
+      url: network.nodeUrl,
+    });
 
     // Retrieve account state from the network
     const account = await provider.query({
@@ -222,7 +228,9 @@ export class Wallet {
   getAccessKeys = async (accountId) => {
     const walletSelector = await this.selector;
     const { network } = walletSelector.options;
-    const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
+    const provider = new nearAPI.providers.JsonRpcProvider({
+      url: network.nodeUrl,
+    });
 
     // Retrieve account state from the network
     const keys = await provider.query({
@@ -240,8 +248,9 @@ export class Wallet {
  * @property {string} signedAccountId The AccountId of the signed user
  */
 
-/** @type {import ('react').Context<NearContext>} */
+/** @type {import ('react').Context<NearContext>}
 // export const NearContext = createContext({
 //   wallet: undefined,
 //   signedAccountId: "",
 // });
+ */

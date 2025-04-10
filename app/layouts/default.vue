@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <Header />
-    <main>
+    <main class="container mx-auto px-4 py-2">
       <slot />
     </main>
     <Footer />

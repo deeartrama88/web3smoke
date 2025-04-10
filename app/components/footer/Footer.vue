@@ -1,6 +1,6 @@
 <template>
   <footer class="bg-gray-800 text-white py-4 text-center">
-    <nav class="inline-block">
+    <nav class="inline-block container mx-auto w-auto">
       <ul class="flex gap-4">
         <li>
           <NuxtLink to="/home">

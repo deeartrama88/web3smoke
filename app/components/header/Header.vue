@@ -1,10 +1,12 @@
 <template>
   <header class="bg-gray-800 text-white text-center">
-    <div class="flex justify-between items-center px-4 py-2">
+    <div class="flex justify-between items-center px-4 py-2 container mx-auto">
       <UButton icon="i-lucide-sun" @click="router.push('/home')" />
       <div class="flex items-end gap-4 justify-center">
         <User />
-        <Wallet />
+        <ClientOnly>
+          <Wallet />
+        </ClientOnly>
       </div>
     </div>
   </header>
