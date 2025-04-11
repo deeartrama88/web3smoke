@@ -10,7 +10,11 @@ export default defineNuxtConfig({
     "@nuxtjs/supabase",
   ],
   css: ["~/assets/css/main.css"],
-
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.BASE_URL ?? "http://localhost:3000",
+    },
+  },
   vite: {
     plugins: [vueDevTools()],
     define: {

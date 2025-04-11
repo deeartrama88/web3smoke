@@ -1,6 +1,7 @@
 export const useAuth = () => {
   const toast = useToast();
   const supabase = useSupabaseClient();
+  const config = useRuntimeConfig();
 
   const login = async (email: string, password: string) => {
     try {
@@ -23,6 +24,9 @@ export const useAuth = () => {
       const { data } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          emailRedirectTo: `${config.public.baseUrl}/`,
+        },
       });
 
       return data;
