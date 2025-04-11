@@ -6,7 +6,8 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "start": "nuxt preview"
   },
   "dependencies": {
     "@near-wallet-selector/core": "^8.10.1",
