@@ -44,4 +44,14 @@ export default defineNuxtConfig({
   plugins: [{ src: "~/plugins/near.client.js", mode: "client", ssr: false }],
 
   compatibilityDate: "2025-04-09",
+
+  supabase: {
+    redirectOptions: {
+      login: "/",
+      callback: "/",
+      include: undefined,
+      exclude: ["/**"],
+      saveRedirectToCookie: true,
+    },
+  },
 });
